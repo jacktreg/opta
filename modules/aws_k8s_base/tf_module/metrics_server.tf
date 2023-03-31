@@ -1,9 +1,9 @@
 resource "helm_release" "metrics_server" {
   chart           = "metrics-server"
   name            = "metrics-server"
-  repository      = "https://charts.bitnami.com/bitnami"
+  repository      = "https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami"
   namespace       = "kube-system"
-  version         = "6.2.14"
+  version         = "5.11.3"
   atomic          = true
   cleanup_on_fail = true
   values = [
