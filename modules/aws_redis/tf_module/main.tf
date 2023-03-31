@@ -23,7 +23,6 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   security_group_ids            = [data.aws_security_group.security_group.id]
   subnet_group_name             = "opta-${var.env_name}"
   replication_group_id          = "opta-${var.layer_name}-${var.module_name}-${random_string.redis_name_hash.result}"
-  replication_group_description = "Elasticache opta-${var.layer_name}-${var.module_name}-${random_string.redis_name_hash.result}"
   node_type                     = var.node_type
   engine_version                = var.redis_version
   number_cache_clusters         = 2
@@ -37,6 +36,6 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   snapshot_window               = var.snapshot_window
   snapshot_retention_limit      = var.snapshot_retention_limit
   lifecycle {
-    ignore_changes = [engine_version, replication_group_id, replication_group_description]
+    ignore_changes = [engine_version, replication_group_id]
   }
 }
